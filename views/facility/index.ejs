@@ -1,0 +1,10 @@
+<h2>SEARCH FACILITY</h2>
+<form action="/facility" method="GET">
+<label>FACILITY NAME</label>
+<input type="text" name="FacName" value="<%= searchOptions.FacName %> ">
+<button type="submit">SEARCH</button>
+</form>
+<br>
+<% facilities.forEach(facility => { %> 
+    <div><%= facility.FacName %> </div>
+<% }) %> 
