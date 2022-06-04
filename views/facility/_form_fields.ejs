@@ -1,8 +1,17 @@
-<label>FACILITY NAME</label>
-<input type="text" name="FacName" value="<%= facility.FacName %>">
-<label>FACILITY TYPE</label>
-<input type="text" name="FacType" value="<%= facility.FacType %>">
-<label>FACILITY NUMBER</label>
-<input type="text" name="FacNum" value="<%= facility.FacNum %>">
-<label>FACILITY IMAGE</label>
-<input type="text" name="FacImage" value="<%= facility.FacImage %>">
+<div>
+    <label>FACILITY NAME</label>
+    <input type="text" name="FacName" value="<%= facility.FacName %>">
+</div>
+<div>
+    <label>FACILITY TYPE</label>
+    <input type="text" name="FacType" value="<%= facility.FacType %>">
+</div>
+<div>
+    <label>FACILITY NUMBER</label>
+    <input type="number" name="FacNum" min="1" value="<%= facility.FacNum %>">
+</div>
+<div>
+    <label>FACILITY IMAGE</label>
+    <input type="file" name="cover">
+</div>
+

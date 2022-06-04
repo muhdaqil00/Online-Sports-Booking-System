@@ -5,6 +5,8 @@
 <button type="submit">SEARCH</button>
 </form>
 <br>
+<div>
 <% facilities.forEach(facility => { %> 
-    <div><%= facility.FacName %> </div>
+    <img height="150" width="100" src="<%= facility.coverImagePath %> ">
 <% }) %> 
+</div>
