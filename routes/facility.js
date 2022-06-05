@@ -1,17 +1,8 @@
 const express = require('express')
-const multer = require('multer')
-const path = require('path')
-const fs = require('fs')
 const router = express.Router()
 const FacilityDB = require('../models/facility')
-const uploadPath = path.join('public', FacilityDB.coverImageBasePath)
-const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
-const upload = multer({
-    dest: uploadPath,
-    fileFilter: (req, file, callback) => {
-        callback(null, imageMimeTypes.includes(file.mimetype))
-    }
-})
+const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
+
 
 //all faciity route
 router.get('/', async (req, res) => {
@@ -36,31 +27,21 @@ router.get('/new', async (req, res) => {
 })
 
 //create facility route
-router.post('/', upload.single('cover'), async (req, res) => {
-    const fileName = req.file != null ? req.file.filename : null
+router.post('/', async (req, res) => {
     const facility = new FacilityDB({
         FacName: req.body.FacName,
         FacType: req.body.FacType,
         FacNum: req.body.FacNum,
-        FacImage: fileName
     })
+    saveCover(facility, req.body.cover)
     try {
         const newFacility = await facility.save()
         //res.redirect(`facility/${newFacility.id}`)
         res.redirect(`facility`)
     } catch{
-        if (facility.FacImage != null){
-            removeFacCover(facility.FacImage)
-        }
         renderNewPage(res, facility, true)
    }
 })
-
-function removeFacCover(fileName) {
-    fs.unlink(path.join(uploadPath, fileName), err =>{
-        if (err) console.error(err)
-    })
-}
 
 async function renderNewPage(res, facility, hasError = false){
     try {
@@ -72,6 +53,15 @@ async function renderNewPage(res, facility, hasError = false){
         res.render('facility/new', params)
     } catch{
         res.redirect('/facility')
+    }
+}
+
+function saveCover(facility, coverEncoded) {
+    if (coverEncoded == null) return
+    const cover = JSON.parse(coverEncoded)
+    if (cover != null && imageMimeTypes.includes(cover.type)) {
+        facility.FacImage = new Buffer.from(cover.data, 'base64')
+        facility.FacImageType = cover.type
     }
 }
 

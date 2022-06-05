@@ -1,6 +1,4 @@
 const mongoose = require('mongoose')
-const path = require('path')
-const coverImageBasePath = 'uploads/facilityCovers'
 
 const facilitySchema = new mongoose.Schema({
     FacName: {
@@ -21,16 +19,19 @@ const facilitySchema = new mongoose.Schema({
         default: Date.now
     },
     FacImage: {
+        type: Buffer,
+        required: true
+    },
+    FacImageType: {
         type: String,
         required: true
     }
 })
 
 facilitySchema.virtual('coverImagePath').get(function() {
-    if (this.FacImage != null) {
-        return path.join('/', coverImageBasePath, this.FacImage)
+    if (this.FacImage != null && this.FacImageType != null) {
+        return `data:${this.FacImageType};charset=utf-8;base64,${this.FacImage.toString('base64')}`
     }
 })
 
 module.exports = mongoose.model('FacilityDB', facilitySchema)
-module.exports.coverImageBasePath = coverImageBasePath
