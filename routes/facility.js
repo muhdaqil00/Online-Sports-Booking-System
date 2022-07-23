@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
     } catch {
         res.redirect('/')
     }
+
 })
 
 //new facility route
@@ -36,21 +37,91 @@ router.post('/', async (req, res) => {
     saveCover(facility, req.body.cover)
     try {
         const newFacility = await facility.save()
-        //res.redirect(`facility/${newFacility.id}`)
-        res.redirect(`facility`)
+        res.redirect(`facility/${newFacility.id}`)
     } catch{
         renderNewPage(res, facility, true)
    }
 })
 
+router.get('/:id',  async (req, res) => {
+    try {
+        const facility = await FacilityDB.findById(req.params.id)
+        res.render('facility/show', {facility: facility})
+    } catch (error) {
+        res.redirect('/')
+    }
+})
+
+//edit facility route
+router.get('/:id/edit', async (req, res) => {
+    try {
+        const facility = await FacilityDB.findById(req.params.id)
+        res.render('facility/edit', { facility: facility})
+    } catch {
+        res.redirect('/facility')
+    }
+    
+})
+
+//update facility route
+router.put('/:id', async (req, res) => {
+    let facility
+    try {
+        facility = await FacilityDB.findById(req.params.id)
+        facility.FacName = req.body.FacName
+        facility.FacType = req.body.FacType
+        facility.FacNum = req.body.FacNum
+        if (req.body.cover != null && req.body.cover !== '') {
+            saveCover(facility, req.body.cover)
+        }
+        await facility.save()
+        res.redirect(`/facility/${facility.id}`)
+    } catch {
+        if (facility != null){
+            renderEditPage(res, book, true)
+        } else {
+            redirect('/')
+        }
+    }
+})
+
+router.delete('/:id', async (req, res) => {
+    let facility
+    try {
+        facility = await FacilityDB.findById(req.params.id)
+        await facility.remove()
+        res.redirect('/facility')
+    } catch {
+        if (facility == null){
+            res.redirect('/')
+        } else {
+            res.render(`/facility/${facility.id}`)
+        }
+    }
+})
+
 async function renderNewPage(res, facility, hasError = false){
+    renderFormPage(res, facility, 'new', hasError)
+}
+
+async function renderEditPage(res, facility, hasError = false){
+    renderFormPage(res, facility, 'edit', hasError)
+}
+
+async function renderFormPage(res, facility, form, hasError = false){
     try {
         const facility = await FacilityDB.find({})
         const params = {
             facility: facility
         }
-        if (hasError) params.errorMessage = 'ERROR CREATING FACILITIES'
-        res.render('facility/new', params)
+        if (hasError) {
+            if (form === 'edit') {
+                params.errorMessage = 'ERROR UPDATING COURT'
+            }else{
+                params.errorMessage = 'ERROR CREATING COURT'
+            }
+        }
+        res.render(`facility/${form}`, params)
     } catch{
         res.redirect('/facility')
     }

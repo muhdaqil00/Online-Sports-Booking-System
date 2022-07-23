@@ -1,0 +1,6 @@
+<h2> EDIT COURT</h2>
+<form action="/facility/<%= facility.id %>?_method=PUT " method="POST">
+    <%- include('_form_fields') %> 
+    <a href="/facility/<%= facility.id %> ">CANCEL</a>
+    <button type="submit">UPDATE</button>
+</form>

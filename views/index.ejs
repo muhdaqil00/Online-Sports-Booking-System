@@ -1,6 +1,11 @@
 <h2>RECENTLY ADDED</h2>
 <div>
     <% facilities.forEach(facility => { %> 
+        <a href="/facility/<%= facility.id %> ">
         <img height="150" width="100" src="<%= facility.coverImagePath %> ">
+        </a>
+        <div>Court Name: <%=facility.FacName%> </div>
+        <div>Court Type: <%=facility.FacType%> </div>
+        <div>Court Number: <%=facility.FacNum%> </div>
     <% }) %> 
 </div>
