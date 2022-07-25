@@ -1,0 +1,13 @@
+<% facCoverClass = locals.large ?
+'fac-cover-large' : ''%>
+<% facGridClass = locals.large ?
+'fac-grid-large' : '' %> 
+
+<div class="fac-grid <%= facGridClass%>">
+    <% facilities.forEach(facility => { %> 
+        <a href="/facility/<%= facility.id %> ">
+        <img class="fac-cover" <%= facCoverClass %>  src="<%= facility.coverImagePath %> ">
+        </a>
+    <% }) %>
+</div>
+ 

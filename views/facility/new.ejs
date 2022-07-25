@@ -1,6 +1,8 @@
-<h2> NEW COURT</h2>
+<h2 class="page-header"> NEW COURT</h2>
 <form action="/facility" method="POST">
     <%- include('_form_fields') %> 
-    <a href="/facility">CANCEL</a>
-    <button type="submit">CREATE</button>
+    <div class="form-row form-row-end btn-row">
+        <a class="btn btn-danger" href="/facility">CANCEL</a>
+        <button class="btn btn-primary" type="submit">CREATE</button>
+    </div>
 </form>

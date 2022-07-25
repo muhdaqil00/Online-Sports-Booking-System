@@ -1,4 +1,10 @@
-<h2><%= facility.FacName %></h2>
-<img width="100" height="150" src="<%= facility.coverImagePath %> ">
-<div>Court Type: <%= facility.FacType %> </div>
-<div>Court Number: <%= facility.FacNum %> </div>
+<h2 class="page-header">Court Name: <%= facility.FacName %></h2>
+<div class="facility-details">
+    <div><img width="300" height="350" src="<%= facility.coverImagePath %> "></div>
+    <div class="facility-details-grid">
+        <div class="facility-details-label">Court Type:</div> 
+        <div><%= facility.FacType %> </div>
+        <div class="facility-details-label">Court Number:</div> 
+        <div><%= facility.FacNum %> </div>
+    </div>
+</div>

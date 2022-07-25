@@ -1,0 +1,43 @@
+:root {
+    --facility-cover-width: 200px;
+    --facility-cover-width-large: 325px;
+    --facility-cover-apect-ration: 0.75;
+}
+
+.facility-cover {
+    width: var(--facility-cover-width);
+    height: calc(var(--facility-cover-width)/ var(--facility-cover-aspect-ration));
+}
+
+.facility-cover-large {
+    --facility-cover-width: var(--facility-cover-width-large);
+}
+
+.facility-grid {
+    display: grid;
+    justify-content: center;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fill, var(--facility-cover-width));
+}
+
+.facility-grid-large {
+    grid-template-columns: repeat(auto-fill, var(--facility-cover-width-large));
+}
+
+.facility-details {
+    display: flex;
+}
+
+.facility-details-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    align-self: flex-start;
+}
+
+.facility-details-grid {
+    display: grid;
+    align-content: flex-start;
+    align-items: center;
+    grid-gap: 1rem;
+    grid-template-columns: auto auto;
+}
