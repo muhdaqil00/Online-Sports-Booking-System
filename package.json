@@ -20,11 +20,15 @@
   "homepage": "https://github.com/muhdaqil00/Online-Sports-Booking-System#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "connect-flash": "^0.1.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-ejs-layouts": "^2.5.1",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.3",
     "method-override": "^3.0.0",
-    "mongoose": "^6.3.4"
+    "mongoose": "^6.3.4",
+    "popups": "^1.1.3"
   },
   "devDependencies": {
     "dotenv": "^16.0.1",

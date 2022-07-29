@@ -1,0 +1,56 @@
+.registerbtn {
+    position: absolute;
+    top: 70%;
+    left: 23%;
+    border-radius: 25px;
+    background-color: #6AD36F;
+    color: white;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 28%;
+    opacity: 0.9;
+  }
+  
+ 
+  .exitbtn {
+    position: absolute;
+    top: 70%;
+    left: 57%;
+    border-radius: 25px;
+    background-color: #f44336;
+    color: white;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 28%;
+    opacity: 0.9;
+  }
+  
+  .registerbtn:hover {
+    opacity: 1;
+  }
+  
+  .exitbtn:hover {
+    opacity: 1;
+  }
+  
+  .middle {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding-top: 145px;
+  }
+   
+  .mid {
+    position: absolute;
+    top: 60%;
+    left: 52%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding-top: 145px;
+    padding-bottom: 100px;
+  }
+
