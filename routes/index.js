@@ -20,7 +20,9 @@ router.get('/', async(req, res) => {
 })
 
 router.get('/register', function (req, res, next) {
-	return res.render('register.ejs');
+	req.flash('success2', `Email is already used.`)
+	req.flash('success3', `password is not matched`)
+	res.render('register.ejs');
 })
 
 router.post('/register', function(req, res, next) { //registration
@@ -61,18 +63,20 @@ router.post('/register', function(req, res, next) { //registration
 					}).sort({_id: -1}).limit(1);
 					res.redirect('/login')
 				}else{
-					res.send({"Success":"Email is already used."});
+					res.send(req.flash('success2'))
 				}
 
 			});
 		}else{
-			res.send({"Success":"password is not matched"});
+			res.send(req.flash('success3'))
 		}
 	}
 });
 
 router.get('/login', function (req, res, next) { //login
-	return res.render('login.ejs');
+	req.flash('failed1', `Wrong password!`)
+	req.flash('failed2', `This Email Is not registered!`)
+	res.render('login.ejs');
 });
 
 router.post('/login', function (req, res, next) {
@@ -86,16 +90,15 @@ router.post('/login', function (req, res, next) {
 				//console.log(req.session.userId);
 				res.redirect('/home')
 			}else{
-				res.send({"Failed":"Wrong password!"});
+				res.send(req.flash('failed1'))
 			}
 		}else{
-			res.send({"Success":"This Email Is not registered!"});
+			res.send(req.flash('failed2'))
 		}
 	});
 });
 
 router.get('/logout', function (req, res, next) { //logout
-	console.log("logout")
 	if (req.session) {
     // delete session object
     req.session.destroy(function (err) {
