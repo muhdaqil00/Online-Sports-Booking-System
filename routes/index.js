@@ -14,6 +14,16 @@ router.get('/home', async(req, res) => {
     res.render('index', {facilities: facilities})
 })
 
+router.get('/viewBooking', async(req, res) => {
+    
+    res.render('viewBooking')
+})
+
+router.get('/viewFeedback', async(req, res) => {
+    
+    res.render('viewFeedback')
+})
+
 router.get('/', async(req, res) => {
     
     res.render('welcome')
