@@ -35,6 +35,10 @@ userSchema = new Schema( {
         type: String,
         required: true
     },
+    phoneNum: {
+        type: Number,
+        require: true
+    }
 
 })
 User = mongoose.model('User', userSchema)

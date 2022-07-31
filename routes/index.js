@@ -67,7 +67,8 @@ router.post('/register', function(req, res, next) { //registration
 							password: personInfo.password,
 							passwordConf: personInfo.passwordConf,
                             birthDate: personInfo.birthDate,
-							gender: personInfo.gender
+							gender: personInfo.gender,
+							phoneNum: personInfo.phoneNum
 						});
 						newPerson.save()
 
