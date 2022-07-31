@@ -41,7 +41,7 @@ router.post('/register', function(req, res, next) { //registration
 
 
 	if(!personInfo.Fname || !personInfo.Lname || !personInfo.username || !personInfo.email || 
-        !personInfo.password || !personInfo.passwordConf || !personInfo.birthDate){
+        !personInfo.password || !personInfo.passwordConf || !personInfo.birthDate || !personInfo.birthDate){
 		res.send();
 	} else {
 		if (personInfo.password == personInfo.passwordConf) {
@@ -66,7 +66,8 @@ router.post('/register', function(req, res, next) { //registration
                             email:personInfo.email,
 							password: personInfo.password,
 							passwordConf: personInfo.passwordConf,
-                            birthDate: personInfo.birthDate
+                            birthDate: personInfo.birthDate,
+							gender: personInfo.gender
 						});
 						newPerson.save()
 

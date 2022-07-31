@@ -30,7 +30,12 @@ userSchema = new Schema( {
     birthDate: {
         type: Date,
         required: true
-      }
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+
 })
 User = mongoose.model('User', userSchema)
 
